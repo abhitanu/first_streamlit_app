@@ -16,5 +16,8 @@ myFruitList = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw
 fruits_selected = streamlit.multiselect("Pick from list", list(myFruitList.Fruit),['Avocado','Strawberries'])
 streamlit.dataframe(fruits_selected)
 
+## Lets get data via API
+streamlit.header("Fruityvice Fruit Advice!")
 fruitVice_response = rr.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruitVice_response)
+streamlit.text(fruitVice_response.json())
+
