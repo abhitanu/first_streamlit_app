@@ -18,8 +18,13 @@ streamlit.dataframe(fruits_selected)
 
 ## Lets get data via API
 streamlit.header("Fruityvice Fruit Advice!")
-fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+"kiwi")
+
+fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+streamlit.write('The user entered ', fruit_choice)
+
+fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
 df_normalized = pd.json_normalize(fruitVice_response.json())
 
 streamlit.dataframe(df_normalized) 
+
 
