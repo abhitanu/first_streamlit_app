@@ -1,5 +1,6 @@
 import streamlit
 import pandas as pd
+import requests
 
 streamlit.title('My parents New Healthy Diner')
 streamlit.header('Breakfast Menu')
@@ -15,4 +16,5 @@ myFruitList = pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw
 fruits_selected = streamlit.multiselect("Pick from list", list(myFruitList.Fruit),['Avocado','Strawberries'])
 streamlit.dataframe(fruits_selected)
 
-
+fruitVice_response = requests.get("http:/fruityvice.com/api/fruit/watermilon")
+streamlit.text(fruitVice_response)
