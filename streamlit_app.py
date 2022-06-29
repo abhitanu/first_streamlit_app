@@ -18,7 +18,7 @@ streamlit.dataframe(fruits_selected)
 
 ## Lets get data via API
 streamlit.header("Fruityvice Fruit Advice!")
-fruitVice_response = rr.get("https://fruityvice.com/api/fruit/watermelon")
+fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+"kiwi")
 df_normalized = pd.json_normalize(fruitVice_response.json())
 
 streamlit.dataframe(df_normalized) 
