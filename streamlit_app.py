@@ -40,7 +40,6 @@ try:
 except URLError as e:
     streamlit.error()
     
-
 ##Lets connect to SnowFlake
 def get_fruit_load_list():
     with my_cnx as my_cur:
@@ -54,8 +53,14 @@ if streamlit.button('What fruit would you like information about?'):
     df = get_fruit_load_list()
     streamlit.dataframe(df)
     
-streamlit.stop()    
-fruit_choice_snowflake = streamlit.text_input('What fruit would you like to add','jackfruit')
-streamlit.write('Thanks for adding ', fruit_choice_snowflake)
+#streamlit.stop()    
 
-my_cur.execute("insert into public.FRUIT_LOAD_LIST values ('from Steamlit')")
+fruit_choice_snowflake = streamlit.text_input('What fruit would you like to add','jackfruit')
+
+def add_row_snowflake(new_fruit):
+    with my_cnx as my_cur:
+    my_cur = my_cnx.cursor()
+    my_cur.execute("insert into public.FRUIT_LOAD_LIST values ('" + new_fruit +"'))
+    streamlit.write('Thanks for adding ', new_fruit)         
+
+#my_cur.execute("insert into public.FRUIT_LOAD_LIST values ('from Steamlit')")
