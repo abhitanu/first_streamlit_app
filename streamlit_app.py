@@ -22,16 +22,16 @@ streamlit.dataframe(fruits_selected)
 streamlit.header("Fruityvice Fruit Advice!")
 
 try:
-  fruit_choice = streamlit.text_input('What fruit would you like information about?')
+    fruit_choice = streamlit.text_input('What fruit would you like information about?')
   
-  if not fruit_choice:
+    if not fruit_choice:
       streamlit.error("Please select fruit to get information")
-   else
+    else
       fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
       df_normalized = pd.json_normalize(fruitVice_response.json())
       streamlit.dataframe(df_normalized) 
-  except URLError as e:
-    streamlit.error()
+    except URLError as e:
+      streamlit.error()
     
 streamlit.stop()
 ##Lets connect to SnowFlake
