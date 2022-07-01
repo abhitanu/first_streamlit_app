@@ -21,15 +21,21 @@ streamlit.dataframe(fruits_selected)
 ## Lets get data via API
 streamlit.header("Fruityvice Fruit Advice!")
 
+
+def : get_fruitvice_data (this_fruit_choice)
+    fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+this_fruit_choice)
+    df_normalized = pd.json_normalize(fruitVice_response.json())
+    #streamlit.dataframe(df_normalized) 
+    return df_normalized
+
 try:
     fruit_choice = streamlit.text_input('What fruit would you like information about?')
   
     if not fruit_choice:
       streamlit.error("Please select fruit to get information")
     else:
-      fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
-      df_normalized = pd.json_normalize(fruitVice_response.json())
-      streamlit.dataframe(df_normalized) 
+        back_from_function = get_fruitvice_data(fruit_choice)
+        streamlit.dataframe(back_from_function) 
     
 except URLError as e:
     streamlit.error()
