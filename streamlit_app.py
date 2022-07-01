@@ -54,7 +54,7 @@ if streamlit.button('What fruit would you like information about?'):
     df = get_fruit_load_list()
     streamlit.dataframe(df)
     
-#streamlit.stop()    
+streamlit.stop()    
 fruit_choice_snowflake = streamlit.text_input('What fruit would you like to add','jackfruit')
 streamlit.write('Thanks for adding ', fruit_choice_snowflake)
 
