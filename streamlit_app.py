@@ -30,6 +30,7 @@ try:
       fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
       df_normalized = pd.json_normalize(fruitVice_response.json())
       streamlit.dataframe(df_normalized) 
+    
     except URLError as e:
       streamlit.error()
     
