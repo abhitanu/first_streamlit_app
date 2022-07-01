@@ -22,7 +22,7 @@ streamlit.dataframe(fruits_selected)
 streamlit.header("Fruityvice Fruit Advice!")
 
 
-def : get_fruitvice_data (this_fruit_choice)
+def get_fruitvice_data (this_fruit_choice):
     fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+this_fruit_choice)
     df_normalized = pd.json_normalize(fruitVice_response.json())
     #streamlit.dataframe(df_normalized) 
