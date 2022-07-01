@@ -21,14 +21,18 @@ streamlit.dataframe(fruits_selected)
 ## Lets get data via API
 streamlit.header("Fruityvice Fruit Advice!")
 
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-streamlit.write('The user entered ', fruit_choice)
-
-fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
-df_normalized = pd.json_normalize(fruitVice_response.json())
-
-streamlit.dataframe(df_normalized) 
-
+try:
+  fruit_choice = streamlit.text_input('What fruit would you like information about?')
+  
+  if not fruit_choice:
+      streamlit.error("Please select fruit to get information")
+   else
+      fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
+      df_normalized = pd.json_normalize(fruitVice_response.json())
+      streamlit.dataframe(df_normalized) 
+  except URLError as e:
+    streamlit.error()
+    
 streamlit.stop()
 ##Lets connect to SnowFlake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
