@@ -26,7 +26,7 @@ try:
   
     if not fruit_choice:
       streamlit.error("Please select fruit to get information")
-    else
+    else:
       fruitVice_response = rr.get("https://fruityvice.com/api/fruit/"+fruit_choice)
       df_normalized = pd.json_normalize(fruitVice_response.json())
       streamlit.dataframe(df_normalized) 
