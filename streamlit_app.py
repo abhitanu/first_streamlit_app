@@ -31,8 +31,8 @@ try:
       df_normalized = pd.json_normalize(fruitVice_response.json())
       streamlit.dataframe(df_normalized) 
     
-    except URLError as e:
-      streamlit.error()
+except URLError as e:
+    streamlit.error()
     
 streamlit.stop()
 ##Lets connect to SnowFlake
